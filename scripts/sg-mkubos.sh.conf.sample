@@ -1,0 +1,15 @@
+### Configuration file for sg-mkubos.sh script ###
+
+## Put one of the script option per line 
+
+## Exemple 1 : to use tag "microboot_384_X62" uncomment the following line :
+#--tag "microboot_384_X62"
+
+## Exemple 2 : to disable flash driver compilation uncomment the following line :
+#-retrofit
+
+
+
+## Note 1 : Using environnement variables is possible.
+
+## Note 2 : For options --logfile and --dir : If the value is not a strict path, the value has to follow a pattern like "./*" or "../*" to be relative to the current PATH ; if not value will be relative to your $HOME directory.

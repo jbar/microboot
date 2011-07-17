@@ -1,0 +1,80 @@
+
+Génération complète
+
+ 1) Effacer le répertoire en_coursTRONC
+ 2) Récupérer les fichiers newubos.sh, tagmicrobootTRONC et gen dans mobiletool/microboot/scripts
+ 3) les copier à la racine
+ 2) Mettre à jour la version de palier presente dans le fichier tagmicrobootTRONC
+ 2) Mettre à jour la version de palier presente dans le fichier newubos.sh. Remplacer -rTRONC par -rmicroboot_350_X62 (350 comme exemple de numéro de palier)
+    et renomer le fichier newubos.sh par newubos350.sh (350 etant un exemple de version)
+ 2) Mettre à jour la version de newubosXXX.sh presente dans le fichier genXXX (ex: newubos350.sh => gen350)
+ 4) lancer la génération à partir de la racine avec l'application Cygwin ex: 'gen350  2>res_compil 1>&2'
+ 5) une fois la compilation terminée, vérifier qu'il n'y a pas eut de problème dans res_compil
+ 6) créer sur le pc un répertoire <num_version>, puis dans ce répertoire un répertoire 'out'
+ 7) copier dans le répertoire <num_version> le fichier <num_version>.tar.gz se trouvant au même
+    endroit que 'res_compil'
+ 8) vérifier qu'il ne manque rien dans le fichier <num_version>.tar.gz
+ 9) extraire tous les fichiers du fichier <num_version>.tar.gz dans le répertoire <num_version>
+10) récupérer les fichiers de génération automatique '*.winubos' qui se trouve dans le répertoire
+    \\sct38nt1\terminal\Outils\RCS\Historique Microboot Sécurisé\Fichiers Génération (fichier referent aux différentes cibles 
+    pour le microboot et le driver de flash, exemple loco_MICROBOOT)
+11) récupérer les fichiers 'Driver_Microboot_xxx.dat' et 'Generation_xxx.bat' se trouvant dans
+    mobiletool/microboot/scripts
+12) les modifier en remplaçant les 'xxx' pas les 3 chiffres <num_version>
+13) à l'intérieur de 'Driver_Microboot_xxx.dat' mettre les noms de fichiers utiles, ces fichiers
+    se trouvent dans le répertoire <num_version>
+14) se procurer une version à jour de WinUBOS.exe (par exemple en compilant le projet WinUBOS de
+    mobiletool
+15) placer le fichier Generation_<num_version>.bat dans le répertoire ou se trouve WinUBOS.exe
+16) exécuter Generation_<num_version>.bat à partir de ce même répertoire
+17) les drivers et microboot doivent se créer dans le répertoire 'out'
+
+cas drivers de flash sécurisé
+18) pour les drivers récupérer les fichiers 'pFBS.pbcs' 'LOCALFLHDRV.pbcs' et 'LOCALFLHDRV.zip' de
+    la version précédante se trouvant sur avis de modif et les copier dans le répertoire 'out'
+19) à l'aide de BCSPacker.exe, ouvrir le fichier 'pFBS.pbcs', en retirer les drivers de la version
+    précédente et y ajouter ceux de la nouvelle version (ne pas oublier d'appuyer sur le bouton
+    Optim. avant de sauver le fichier)
+20) comparer le contenu du nouveau fichier 'pFBS.pbcs' avec le contenu du fichier 'pFBS.pbcs'
+    de la version précédante, il doit y avoir le même nombre de fichier, si nombre différent
+    il faut vérifier quelles sont les signatures manquantes.
+21) créer un nouveau fichier 'LOCALFLHDRV.zip' et y mettre tous les fichiers 'LOCALFLHDRV_*.bcs'
+    se trouvant dans le répertoire 'out' et le ou les fichiers 'DISPLAYPRG_*.rawprg' se trouvant
+    dans le répertoire <num_version>
+22) vérifier par rapport au fichier de la version précédante
+24) faire l'avis de modif en y mettant les différences avec la version précédante, différences
+    faite à partir des livraisons
+25) mettre les nouveaux fichiers 'pFBS.pbcs' et 'LOCALFLHDRV.zip' dans le
+    répertoire d'avis de modif de la nouvelle version
+26) recopier les TELECH se trouvant dans le répertoire d'avis de modif de la version précédante
+    dans le répertoire d'avis de modif de la nouvelle version
+
+cas microboot sécurisé
+27) pour les microboots, récupérer les fichiers 'UBOS_.....pbcs' 'UBOS_.....zip' et
+    'NBBSE_UBOS_.....zip' de la version précédante se trouvant sur avis de modif et les copier
+    dans le répertoire 'out'
+28) à l'aide de BCSPacker.exe, ouvrir le fichier 'UBOS_.....pbcs', en retirer tous les fichiers
+    sauf le 'dummy.i32' et y mettre tous les fichiers 'UBOS*.bcs', créer un fichier 'UBOS_.....zip'
+    et y mettre le même contenu que dans le fichier 'UBOS_.....pbcs'
+29) vérifier par rapport au fichier de la version précédante
+30) ouvrir le fichier 'NBBSE_UBOS_.....zip' de la version précédante et créer un nouveau fichier
+    'NBBSE_UBOS_.....zip' pour la nouvelle version et y mettre les microboots avec les mêmes
+    signatures que les dans le fichier de la version précédante
+31) faire l'avis de modif en y mettant les différences avec la version précédante, différences
+    faite à partir des livraisons
+32) mettre les nouveaux fichiers 'UBOS_.....pbcs' 'UBOS_.....zip' et 'NBBSE_UBOS_.....zip' dans
+    le répertoire d'avis de modif de la nouvelle version
+33) recopier les TELECH se trouvant dans le répertoire <num_version> dans le répertoire d'avis
+    de modif de la version la plus récente de drivers
+
+
+
+Génération de driver et/ou microboot d'une version donnée avec de nouvelle clé
+
+1) vérifier avec LireBcs.exe la version de serveur Bcs qui a été utilisé pour la génération de cette
+version de microboot et/ou driver.
+2) Se mettre sur cette version de serveur Bcs. (voir avec William ou Didier au besoin)
+3) Générer les microboots et/ou drivers voulus
+4) mettre à jour les répertoire d'avif de modif
+5) ne pas oublier de mettre à jour les fichiers de générations automatiques en y ajoutant la nouvelle clé
+   (ces fichiers se trouvent dans \\sct38nt1\terminal\Outils\RCS\Historique Microboot Sécurisé\Fichiers Génération )
